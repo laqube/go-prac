@@ -19,14 +19,15 @@ func reader(conn *websocket.Conn) {
 	for {
 		messageType, p, err := conn.ReadMessage()
 		if err != nil {
-			log.Printl(err)
+			log.Println(err)
 			return
 		}
-	}
-	fmt.Println(string(p))
-	if err := conn.WriteMessage(messageType, p); err != nil {
-		log.Println(err)
-		return
+
+		fmt.Println(string(p))
+		if err := conn.WriteMessage(messageType, p); err != nil {
+			log.Println(err)
+			return
+		}
 	}
 }
 
